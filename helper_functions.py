@@ -13,6 +13,7 @@ import random
 import textwrap
 import numpy as np
 from enum import Enum
+from pydantic import BaseModel
 
 
 def replace_t_with_space(list_of_documents):
@@ -157,6 +158,9 @@ class QuestionAnswerFromContext(BaseModel):
         answer_based_on_content (str): The generated answer based on the context.
     """
     answer_based_on_content: str = Field(description="Generates an answer to a query based on a given context.")
+    class Config:
+        arbitrary_types_allowed = True
+    
 
 
 def create_question_answer_from_context_chain(llm):
